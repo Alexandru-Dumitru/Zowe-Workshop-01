@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'zowe-agent' }
+    agent { label 'ca-brightside-agent' }
     environment {
         // Endevor Details
         ENDEVOR_CONNECTION="--port 6002 --protocol http --reject-unauthorized false"
