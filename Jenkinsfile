@@ -6,7 +6,7 @@ pipeline {
         ENDEVOR_LOCATION="--instance ENDEVOR --env DEV --sys MARBLES --sub MARBLES --ccid JENKXX --comment JENKXX"
         ENDEVOR="$ENDEVOR_CONNECTION $ENDEVOR_LOCATION"
 
-        ZOWE_OPT_HOSTNAME=credentials('eosHost')
+        ZOWE_OPT_HOSTNAME=credentials('alexHost')
 
         // z/OSMF Connection Details
         ZOWE_OPT_HOST=credentials('alexHost')
