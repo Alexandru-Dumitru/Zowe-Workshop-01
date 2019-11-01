@@ -9,7 +9,7 @@ pipeline {
         ZOWE_OPT_HOSTNAME=credentials('eosHost')
 
         // z/OSMF Connection Details
-        ZOWE_OPT_HOST=credentials('eosHost')
+        ZOWE_OPT_HOST=credentials('alexHost')
         ZOWE_OPT_PORT="443"
         ZOWE_OPT_REJECT_UNAUTHORIZED=false
 
@@ -37,7 +37,7 @@ pipeline {
         stage('build') {
             steps {
                 //ZOWE_OPT_USERNAME & ZOWE_OPT_PASSWORD are used to interact with Endevor 
-                withCredentials([usernamePassword(credentialsId: 'eosCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'alexCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
                     sh 'gulp build'
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
         stage('deploy') {
             steps {
                 //ZOWE_OPT_USER & ZOWE_OPT_PASSWORD are used to interact with z/OSMF and CICS
-                withCredentials([usernamePassword(credentialsId: 'eosCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'alexCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
                     sh 'gulp deploy'
                 }
             }
@@ -53,7 +53,7 @@ pipeline {
         stage('test') {
             steps {
                 //ZOWE_OPT_USER & ZOWE_OPT_PASS are used to interact with z/OSMF
-                withCredentials([usernamePassword(credentialsId: 'eosCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'alexCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
                     sh 'npm test'
                 }
             }
